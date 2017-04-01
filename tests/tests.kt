@@ -1,5 +1,3 @@
-
-
 import junit.framework.Assert.assertEquals
 import org.junit.jupiter.api.Test
 import java.io.File
@@ -11,6 +9,17 @@ class Tests {
         val file = File(name)
         val content = file.readLines().joinToString("\n")
         assertEquals(expectedContent, content)
+    }
+
+    @Test
+    fun fromFile() {
+        val file = File.createTempFile("temp", ".txt", File("D:/"))
+        file.writeText("Мама" + "\n" + "мыла" + "\n" + "раму")        // работает он правильно, но почему записывает всё в одну строчку??
+        try {
+            assertEquals("Ма\nмы\nра\n", fromFile('c', file.canonicalPath, 1, 2))
+        } finally {                                                    //чтобы он в любом случае удалял файл, а то наплодил мне
+            File(file.canonicalFile.toString()).deleteOnExit()
+        }
     }
 
     @Test
@@ -28,7 +37,7 @@ line2""")
     }
 
     @Test
-    fun lineHandling(){
+    fun lineHandling() {
         assertEquals("1 ", lineHandling('c', 1, 2, "1 2 3 4 5 6"))
         assertEquals("1 6", lineHandling('w', 1, 2, "1 6 3 4 5 6"))
         assertEquals("mother father", lineHandling('w', 1, 2, "mother     father sister brother"))
@@ -37,7 +46,7 @@ line2""")
     }
 
     @Test
-    fun argParsing(){
+    fun argParsing() {
         var arr = ArrayList<String>()
         var args = ArrayList<String>()
         arr.add("file")
@@ -45,7 +54,7 @@ line2""")
         arr.add("7")
         args.add("file")
         args.add("2-7")
-        assertEquals(arr,argParsing(args))
+        assertEquals(arr, argParsing(args))
 
         arr.clear()
         args.clear()
@@ -54,7 +63,7 @@ line2""")
         arr.add("7")
         args.add("")
         args.add("5-7")
-        assertEquals(arr,argParsing(args))
+        assertEquals(arr, argParsing(args))
 
         arr.clear()
         args.clear()
@@ -66,4 +75,3 @@ line2""")
         assertEquals(arr, argParsing(args))
     }
 }
-
