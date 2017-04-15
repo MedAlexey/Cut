@@ -12,37 +12,36 @@ class Tests {
     }
 
     @Test
-    fun fromFile() {
-        val file = File.createTempFile("temp", ".txt", File("D:/"))
-        file.writeText("Мама" + "\n" + "мыла" + "\n" + "раму")        // работает он правильно, но почему записывает всё в одну строчку??
-        try {
-            assertEquals("Ма\nмы\nра\n", fromFile('c', file.canonicalPath, 1, 2))
-        } finally {                                                    //чтобы он в любом случае удалял файл, а то наплодил мне
-            File(file.canonicalFile.toString()).deleteOnExit()
-        }
+    fun charHandlingTest(){
+        assertEquals("2 3",charHandling(3,5,"1 2 3 4 5"))
+        assertEquals("234", charHandling(2,4,"123456"))
     }
 
     @Test
-    fun toFile() {
-        toFile("temp.txt", "line")
-        assertFileContent("temp.txt",
-                "line")
-        File("temp.txt").delete()
-
-        toFile("temp.txt", "line1" + "\n" + "line2")
-        assertFileContent("temp.txt",
-                """line1
-line2""")
-        File("temp.txt").delete()
+    fun wordHandlingTest(){
+        assertEquals("3 4 5", wordHandling(3,5,"1 2 3 4 5 6"))
+        assertEquals("1 2 3", wordHandling(1,3,"1 2 3 "))
     }
 
     @Test
-    fun lineHandling() {
-        assertEquals("1 ", lineHandling('c', 1, 2, "1 2 3 4 5 6"))
-        assertEquals("1 6", lineHandling('w', 1, 2, "1 6 3 4 5 6"))
-        assertEquals("mother father", lineHandling('w', 1, 2, "mother     father sister brother"))
-        assertEquals("", lineHandling('f', 1, 2, "1 2 3 4 5 6"))
-        assertEquals("3 4 ", lineHandling('w', 3, -1, "1 2 3 4 "))
+    fun CmdLiteTest(){
+        val args =  arrayOf("-c","3-4")
+
+        CmdLine().CmdParse(args)
+        assertEquals(3, CmdLine.getStartPosition())
+        assertEquals(4, CmdLine.getEndPosition())
+        assertEquals('c',CmdLine.getLineSplitting())
+        assertEquals("", CmdLine.getOutputFileName())
+        assertEquals("", CmdLine.getInputFileName())
+
+        val args1 = arrayOf("-w", "-o", "ofile", "file", "4-")
+        CmdLine().CmdParse(args1)
+        assertEquals(4,CmdLine.getStartPosition())
+        assertEquals(-1, CmdLine.getEndPosition())
+        assertEquals('w', CmdLine.getLineSplitting())
+        assertEquals("ofile", CmdLine.getOutputFileName())
+        assertEquals("file", CmdLine.getInputFileName())
+
     }
 
     @Test
