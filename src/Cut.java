@@ -26,60 +26,34 @@ public class Cut {
 
 
     private void reading(String ofile, String file) throws Exception{
-        InputStream inputStream;
-        OutputStream outputStream;
-        if (ofile != "") outputStream = new FileOutputStream(ofile);
-        else outputStream = new BufferedOutputStream(System.out);
+        BufferedReader inputStream;
+        BufferedWriter outputStream;
 
-        if (file == "") {
-            StringBuilder builder = new StringBuilder();
+        outputStream = ofile == "" ? new BufferedWriter(new OutputStreamWriter(System.out)): new BufferedWriter(new PrintWriter(ofile));
+        inputStream = file == "" ? new BufferedReader(new InputStreamReader(System.in)) : new BufferedReader(new FileReader(file));
 
-            inputStream = new BufferedInputStream(System.in);
-            int data = inputStream.read();
-            char content;
-            while(data != -1) {
-                content = (char) data;
-                builder.append(content);
-                if (content == '\n'){
-                    printing(outputStream,builder);
-                    builder.delete(0,builder.length());
-                }
-
-                data = inputStream.read();
-                if(data == -1){              //если конец файла
-                    printing(outputStream,builder);
-                }
-
+        StringBuilder builder = new StringBuilder();
+        int data = inputStream.read();
+        char content;
+        while(data != -1){
+            content = (char) data;
+            builder.append(content);
+            if(content == '\n'){
+                printing(outputStream,builder);
+                builder.delete(0, builder.length());
             }
-        } else {
-            try{
-                StringBuilder result = new StringBuilder();
-                inputStream = new FileInputStream(file);
-                int data = inputStream.read();               //читаем 1ый символ
-                char content;
-                while(data != -1){               //читаем файл посимвольно
-                    content = (char) data;   //переводим символ в чар
-                    result.append(content);
-                    if (content == '\n'){         //если конец строки
-                        printing(outputStream,result);
-                        result.delete(0,result.length());
-                    }
 
-                    data = inputStream.read();  //читаем следующий символ
-                    if(data == -1){              //если конец файла
-                        printing(outputStream,result);
-                    }
-                }
-            }
-            catch (FileNotFoundException e){
-                return;
+            data = inputStream.read();
+            if (data == -1){
+                printing(outputStream, builder);
             }
         }
+
         outputStream.close();
         inputStream.close();
     }
 
-    private void printing(OutputStream outputStream, StringBuilder result){
+    private void printing(BufferedWriter outputStream, StringBuilder result){
         String line = processedLine(result.toString());
         line += '\n';
         try{
