@@ -24,30 +24,9 @@ class Tests {
     }
 
     @Test
-    fun CmdLiteTest(){
-        val args =  arrayOf("-c","3-4")
-
-        CmdLine().CmdParse(args)
-        assertEquals(3, CmdLine.getStartPosition())
-        assertEquals(4, CmdLine.getEndPosition())
-        assertEquals('c',CmdLine.getLineSplitting())
-        assertEquals("", CmdLine.getOutputFileName())
-        assertEquals("", CmdLine.getInputFileName())
-
-        val args1 = arrayOf("-w", "-o", "ofile", "file", "4-")
-        CmdLine().CmdParse(args1)
-        assertEquals(4,CmdLine.getStartPosition())
-        assertEquals(-1, CmdLine.getEndPosition())
-        assertEquals('w', CmdLine.getLineSplitting())
-        assertEquals("ofile", CmdLine.getOutputFileName())
-        assertEquals("file", CmdLine.getInputFileName())
-
-    }
-
-    @Test
     fun argParsing() {
-        var arr = ArrayList<String>()
-        var args = ArrayList<String>()
+        val arr = ArrayList<String>()
+        val args = ArrayList<String>()
         arr.add("file")
         arr.add("2")
         arr.add("7")

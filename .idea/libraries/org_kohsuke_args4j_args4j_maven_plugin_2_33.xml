@@ -1,0 +1,26 @@
+<component name="libraryTable">
+  <library name="org.kohsuke.args4j:args4j-maven-plugin:2.33" type="repository">
+    <properties maven-id="org.kohsuke.args4j:args4j-maven-plugin:2.33" />
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/lib/args4j-maven-plugin-2.33.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/args4j-tools-2.33-all.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/args4j-2.33.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/tools.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/maven-project-2.0.4.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/maven-settings-2.0.4.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/maven-model-2.0.4.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/plexus-utils-1.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/plexus-container-default-1.0-alpha-9.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/junit-3.8.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/classworlds-1.1-alpha-2.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/maven-profile-2.0.4.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/maven-artifact-manager-2.0.4.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/maven-repository-metadata-2.0.4.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/maven-artifact-2.0.4.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/wagon-provider-api-1.0-alpha-6.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/maven-plugin-api-2.0.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

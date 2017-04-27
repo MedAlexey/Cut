@@ -13,14 +13,22 @@ import java.util.Scanner;
 public class Cut {
 
     public static void main(String[] args) throws Exception {
-        new CmdLine().CmdParse(args);
+        CmdLine cmdLine = new CmdLine(args);
         try{
-            new Cut().reading(CmdLine.getOutputFileName(),
-                    CmdLine.getInputFileName());
+            new Cut(cmdLine).reading(cmdLine.getOutputFileName(), cmdLine.getInputFileName());
         }
         catch(Exception e){
 
         }
+    }
+
+    private char lineSplinning;
+    private int startPosition;
+    private int endPosition;
+    public Cut(CmdLine cmdLine){
+        lineSplinning = cmdLine.getLineSplitting();
+        startPosition = cmdLine.getStartPosition();
+        endPosition = cmdLine.getEndPosition();
     }
 
 
@@ -67,9 +75,9 @@ public class Cut {
     }
 
     private String processedLine(String line){
-         return CmdLine.getLineSplitting() == 'w' ?
-                LineHandlingKt.wordHandling(CmdLine.getStartPosition(), CmdLine.getEndPosition(), line) :
-                LineHandlingKt.charHandling(CmdLine.getStartPosition(), CmdLine.getEndPosition(), line);
+         return lineSplinning == 'w' ?
+                 LineHandlingKt.wordHandling(startPosition,endPosition, line) :
+                 LineHandlingKt.charHandling(startPosition, endPosition, line);
     }
 
 

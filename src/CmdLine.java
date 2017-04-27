@@ -16,18 +16,18 @@ public class CmdLine {
     private Boolean wordIndention;
 
     @Option(name = "-o", metaVar = "ofile", required = false, usage = "Output FileName name")
-    private static String outputFileName;
+    private String outputFileName;
 
     @Argument
     private List<String> arguments = new ArrayList<>();
 
-    private static char lineSplitting;
-    private static String inputFileName;
-    private static int startPosition;
-    private static int endPosition;
+    private char lineSplitting;
+    private String inputFileName;
+    private int startPosition;
+    private int endPosition;
 
 
-    public void CmdParse(String[] args) throws IOException {
+    public CmdLine(String[] args) throws IOException {
         CmdLineParser parser = new CmdLineParser(this);
 
         try {
@@ -64,22 +64,22 @@ public class CmdLine {
 
     }
 
-    public static int getStartPosition() {
+    public int getStartPosition() {
         return (startPosition);
     }
 
-    public static int getEndPosition() {
+    public int getEndPosition() {
         return (endPosition);
     }
 
-    public static String getOutputFileName() {
+    public String getOutputFileName() {
         return (outputFileName);
     }
 
-    public static String getInputFileName() {
+    public String getInputFileName() {
         return (inputFileName);
     }
 
-    public static char getLineSplitting() { return (lineSplitting); }
+    public char getLineSplitting() { return (lineSplitting); }
 
 }
