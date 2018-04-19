@@ -23,7 +23,7 @@ class Tests {
         assertEquals("1 2 3", wordHandling(1,3,"1 2 3 "))
     }
 
-    @Test
+    @Test  
     fun argParsing() {
         val arr = ArrayList<String>()
         val args = ArrayList<String>()
